@@ -3,9 +3,6 @@ USER root
 RUN apt-get update
 RUN apt-get install ssh curl wget nginx-full apache2-utils nano bash tmux htop net-tools zip unzip screen ca-certificates python3 python3-pip build-essential manpages-dev apt-utils lsof git locales cmake libjson-c-dev libwebsockets-dev ffmpeg tor redis-server supervisor pure-ftpd-common pure-ftpd iputils-ping -y
 
-RUN chown root:root /bin/bash
-RUN chown root:root /bin/sh
-
 RUN mkdir /run/sshd && \
     echo root:c68.300OQa|chpasswd
 
@@ -22,9 +19,6 @@ RUN curl -fsSL https://code-server.dev/install.sh | bash  && \
     npm install -g koa-generator && \
     npm install -g pm2 && \
     npm install -g nodemon
-
-RUN chown root:root /usr/bin/code-server
-#RUN chown root:root /usr/bin/screen
 
 EXPOSE 1-65535
 
