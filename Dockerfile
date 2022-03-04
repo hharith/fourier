@@ -68,8 +68,6 @@ RUN mkdir /run/sshd && \
 #    chmod a+rx /start.sh && \
 #    unzip -o /grad_school.zip -d / && \
 #    chmod -Rf +rw /templatemo_557_grad_school && \
-#    wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/local/bin/youtube-dl && \
-#    chmod a+rx /usr/local/bin/youtube-dl && \
 #    wget https://github.com/tsl0922/ttyd/releases/latest/download/ttyd.x86_64 -O /usr/local/bin/ttyd && \
 #    chmod a+rx /usr/local/bin/ttyd && \
 #    rm -rf /etc/nginx/sites-available/default && \
