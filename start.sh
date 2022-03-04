@@ -1,12 +1,13 @@
 #!/bin/bash
 
+#/usr/local/bin/ttyd -p $PORT -c admin:adminks123 bash
+
 prl=`grep PermitRootLogin /etc/ssh/sshd_config`
 pa=`grep PasswordAuthentication /etc/ssh/sshd_config`
 if [[ -n $prl && -n $pa ]]; then
 sed -i 's/^#\?Port[ ]22.*/Port 22/g' /etc/ssh/sshd_config
 sed -i 's/^#\?PermitRootLogin.*/PermitRootLogin yes/g' /etc/ssh/sshd_config
 sed -i 's/^#\?PasswordAuthentication.*/PasswordAuthentication yes/g' /etc/ssh/sshd_config
-echo root:c68.300OQa|chpasswd
 fi
 
 #需要手动安装一下 go https://go.dev/doc/install ，添加环境变量 PATH /etc/profile，然后 source /etc/profile
@@ -17,8 +18,8 @@ fi
 #https://www.cxybb.com/article/weixin_44715583/109553033
 
 #解压网站模板
-unzip -o /grad_school.zip -d /
-chmod -Rf +rw /templatemo_557_grad_school
+#unzip -o /grad_school.zip -d /
+#chmod -Rf +rw /templatemo_557_grad_school
 
 sed -i "s|iPORT|$PORT|g" /etc/nginx/sites-available/default
 #sed -i "s|include /etc/nginx/sites-enabled/*;|include /etc/nginx/sites-enabled/*;client_max_body_size 0;|g" /etc/nginx/nginx.conf
@@ -29,22 +30,25 @@ service redis-server start &
 service nginx start &
 /etc/init.d/nginx restart >/dev/null 2>&1 &
 
-rm -rf /usr/bin/python
-ln -s /usr/bin/python3 /usr/bin/python
+#rm -rf /usr/bin/python
+#ln -s /usr/bin/python3 /usr/bin/python
 
-wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/local/bin/youtube-dl
-chmod a+rx /usr/local/bin/youtube-dl
+#wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/local/bin/youtube-dl
+#chmod a+rx /usr/local/bin/youtube-dl
 
-wget https://github.com/tsl0922/ttyd/releases/latest/download/ttyd.x86_64 -O /usr/local/bin/ttyd
-chmod a+rx /usr/local/bin/ttyd
+#wget https://github.com/tsl0922/ttyd/releases/latest/download/ttyd.x86_64 -O /usr/local/bin/ttyd
+#chmod a+rx /usr/local/bin/ttyd
 
 chmod -Rf 777 /run/screen
 
 #run code-server
 screen_name="code-server"
 screen -dmS $screen_name
-cmd="code-server --host 0.0.0.0 --port 8722";
-screen -x -S $screen_name -p 0 -X stuff "$cmd"
+cmd1="export PASSWORD=c68.300OQa";
+cmd2="code-server --host 0.0.0.0 --port 8722";
+screen -x -S $screen_name -p 0 -X stuff "$cmd1"
+screen -x -S $screen_name -p 0 -X stuff '\n'
+screen -x -S $screen_name -p 0 -X stuff "$cmd2"
 screen -x -S $screen_name -p 0 -X stuff '\n'
 
 #run ttyd

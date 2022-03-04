@@ -8,10 +8,13 @@
 	"latex-workshop.intellisense.package.enabled": true,
 	"latex-workshop.message.error.show": false,
 	"latex-workshop.message.warning.show": false,
-	"latex-workshop.viewer.pdf.internal.port":345,
+	"latex-workshop.viewer.pdf.internal.port":53455,
 	"latex-workshop.view.pdf.hand":false,
 	"latex-workshop.message.badbox.show":false,
 	"latex-workshop.message.log.show":false,
+	"latex-workshop.view.pdf.viewer": "tab",
+	"latex-workshop.message.latexlog.exclude":["Font","empty","defining","overwrite","deprecated","Using"],
+	"latex-workshop.message.bibtexlog.exclude":["Font","empty","defining","overwrite","deprecated","Using"],
 	"latex-workshop.latex.tools": [
 		{
 			"name": "xelatex",
@@ -91,5 +94,7 @@
 	"problems.decorations.enabled": false,
 	"editor.wordWrap": "on",
 	"files.autoSave": "afterDelay",
-	"files.autoSaveDelay": 1000
+	"files.autoSaveDelay": 1000,
+	"problems.autoReveal": false,
+	"outline.problems.badges": false
 }
